@@ -21,7 +21,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
-    "https://bankmanagement-ynnk.onrender.com/",
+    "https://bankmanagement-ynnk.onrender.com",
     "https://*.127.0.0.1",
 ]
 
