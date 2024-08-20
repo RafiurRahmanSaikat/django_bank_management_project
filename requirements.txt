@@ -13,3 +13,5 @@ psycopg2
 setuptools
 sqlparse
 virtualenv
+psycopg2-binary
+dj-database-url
