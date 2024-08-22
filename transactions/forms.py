@@ -33,25 +33,28 @@ class DepositForm(TransactionForm):
         return amount
 
 
-class WithdrawForm(TransactionForm):
+class TransferMoneyForm(TransactionForm):
+    account_number = forms.IntegerField()
+    amount = forms.DecimalField(max_digits=10, decimal_places=2)
+
     def clean_amount(self):
-        account = self.account
-        min_withdrawal_amount = 100
-        max_withdrawal_amount = 50000
-        balance = account.balance
         amount = self.cleaned_data.get("amount")
         if amount <= 0:
+            raise forms.ValidationError("Amount must be greater than zero")
+        return amount
+
+
+class WithdrawForm(TransactionForm):
+    def clean_amount(self):
+        amount = self.cleaned_data.get("amount")
+        account = self.account
+        balance = account.balance
+
+        if amount <= 0:
             raise forms.ValidationError("Amount must be greater than zero.")
-        if amount < min_withdrawal_amount:
-            raise forms.ValidationError(
-                f"Amount must be greater than {min_withdrawal_amount}."
-            )
-        if amount > max_withdrawal_amount:
-            raise forms.ValidationError(
-                f"Amount must be less than or equal to {balance-min_withdrawal_amount}."
-            )
-        if amount >= balance:
+        if amount > balance:
             raise forms.ValidationError("Insufficient balance to withdraw this amount.")
+
         return amount
 
 

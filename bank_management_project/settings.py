@@ -1,14 +1,14 @@
+from pathlib import Path
+
 import dj_database_url
 import environ
 
 env = environ.Env()
 environ.Env.read_env()
 
-from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -20,10 +20,10 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [
-    "https://bankmanagement-ynnk.onrender.com",
-    "https://*.127.0.0.1",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://bankmanagement-ynnk.onrender.com",
+#     "https://*.127.0.0.1",
+# ]
 
 # Application definition
 
@@ -74,12 +74,12 @@ WSGI_APPLICATION = "bank_management_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 # DATABASES = {
 #     "default": {
@@ -92,12 +92,12 @@ WSGI_APPLICATION = "bank_management_project.wsgi.application"
 #     }
 # }
 # Replace the SQLite DATABASES configuration with PostgreSQL:
-DATABASES = {
-    "default": dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default="postgresql://bank_zb0i_user:Z24PubDSPnv85ubUl2q8t3hoaMCZC9nI@dpg-cr271sjqf0us739ns2hg-a.oregon-postgres.render.com/bank_zb0i",
-    )
-}
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default="postgresql://bank_zb0i_user:Z24PubDSPnv85ubUl2q8t3hoaMCZC9nI@dpg-cr271sjqf0us739ns2hg-a.oregon-postgres.render.com/bank_zb0i",
+#     )
+# }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
