@@ -100,6 +100,9 @@ class TransferMoneyView(TransactionCreateMixin):
 
         try:
             reciver = UserBankAccount.objects.get(account_number=account_number)
+            if sender.balance < amount:
+                messages.error(self.request, "Insufficient Balance")
+                return super().form_invalid(form)
             reciver.balance += amount
             sender.balance -= amount
             reciver.save(update_fields=["balance"])
