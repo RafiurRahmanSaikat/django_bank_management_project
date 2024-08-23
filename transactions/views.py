@@ -13,14 +13,7 @@ from django.views.generic import CreateView, ListView
 
 from accounts.models import UserBankAccount
 
-from .constants import (
-    DEPOSIT,
-    LOAN,
-    LOAN_PAID,
-    TRANSACTION_TYPE,
-    TRANSFER_MONEY,
-    WITHDRAW,
-)
+from .constants import DEPOSIT, LOAN, LOAN_PAID, TRANSFER_MONEY, WITHDRAW
 from .forms import DepositForm, LoanRequestForm, TransferMoneyForm, WithdrawForm
 from .models import TransactionModel
 
