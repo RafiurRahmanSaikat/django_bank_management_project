@@ -20,7 +20,11 @@
             {% endfor %}
           {% endif %}
         {% endfor %}
-
+        {% if messages %}
+          {% for message in messages %}
+            <p class="text-green-600 text-sm italic pb-2">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
         <div class="flex w-full justify-center">
           <button class="bg-blue-900 text-white hover:text-blue-900 hover:bg-white border border-blue-900 font-bold px-4 py-2 rounded-lg" type="submit">Submit</button>
         </div>
