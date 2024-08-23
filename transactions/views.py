@@ -173,6 +173,7 @@ class TransactionReportView(LoginRequiredMixin, ListView):
     template_name = "transactions/transaction_report.html"
     model = TransactionModel
     balance = 0
+    context_object_name = "sa"
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(account=self.request.user.account)
