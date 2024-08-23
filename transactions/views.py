@@ -64,7 +64,7 @@ class DepositView(TransactionCreateMixin):
         amount = form.cleaned_data["amount"]
         account.balance += amount
         account.save(update_fields=["balance"])
-        messages.success(self.request, "f{amount} Tk Succesfully Deposited")
+        messages.success(self.request, f"{amount} Tk Succesfully Deposited")
 
         send_transaction_email(
             self.request.user,
@@ -163,9 +163,7 @@ class LoanRequestView(TransactionCreateMixin):
         if current_loan_count >= 3:
             return HttpResponse("You have already requested 3 loans.")
 
-        messages.success(
-            self.request, "f{amount} Tk Loan Requested to Administrator Approval"
-        )
+        messages.success(self.request, f"Loan Requested to Administrator Approval")
         return super().form_valid(form)
 
 
